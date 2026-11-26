@@ -1,4 +1,3 @@
-
 <?php
 require_once __DIR__ . '/functions.php';
 
@@ -16,7 +15,7 @@ $products = $stmt->fetchAll();
     <h1>商品一覧</h1>
     <ul>
         <?php foreach ($products as $product): ?>
-            <li><?= h($product['name']) ?>（<?= number_format($product['price']) ?>円）</li>
+            <li><a href="product.php?id=<?= (int) $product['id'] ?>"><?= h($product['name']) ?></a>（<?= number_format($product['price']) ?>円）</li>
         <?php endforeach; ?>
     </ul>
 </body>
