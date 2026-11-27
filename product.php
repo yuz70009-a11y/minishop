@@ -27,6 +27,15 @@ if (!$product) {
     <p>価格：<?= number_format($product['price']) ?>円</p>
     <p>在庫：<?= (int) $product['stock'] ?>個</p>
     <p><?= h($product['description']) ?></p>
+    <?php if (isset($_GET['added'])): ?>
+        <p>カートに入れました。（カートの中は合計<?= cart_count() ?>個）</p>
+    <?php endif; ?>
+    <form action="cart_add.php" method="post">
+        <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
+        <input type="hidden" name="id" value="<?= (int) $product['id'] ?>">
+        <label>個数 <input type="number" name="quantity" value="1" min="1" max="99"></label>
+        <button type="submit">カートに入れる</button>
+    </form>
     <p><a href="index.php">商品一覧へ戻る</a></p>
 </body>
 </html>
